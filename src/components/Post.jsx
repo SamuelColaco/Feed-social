@@ -29,19 +29,21 @@ export function Post(props){
     function addComments(){
     
         event.preventDefault()
-        
-        if(newTextComment === ""){
-            alert("Digite algo para mandar")
-        }
-        else{
+
             setComments([...comments, newTextComment])
             setNewTextComment('')
-        }
-      
     }
 
     function HandleValue(){
         setNewTextComment(event.target.value)
+    }
+
+    function deleteComment(commentDelete){
+        const arrayWithoutCommentDeleted = comments.filter(comment => {
+            return comment !== commentDelete
+        })
+
+        setComments(arrayWithoutCommentDeleted)
     }
 
     return(
@@ -63,10 +65,10 @@ export function Post(props){
 
             {props.content.map(line => {
                 if(line.type === "paragraph"){
-                    return <p>{line.content}</p>
+                    return <p key={line.content}>{line.content}</p>
                 }
                 else if(line.type === "link"){
-                    return <a href="#"> <p>{line.content}</p></a>
+                    return <a href="#" key={line.content}> <p>{line.content}</p></a>
                 }
             })}
 
@@ -74,17 +76,17 @@ export function Post(props){
            </div>
            <form onSubmit={addComments}>
             <strong>Deixe seu feedback</strong>
-            <textarea placeholder='Digite um comentário' name='comments' onChange={HandleValue} value={newTextComment}>
+            <textarea placeholder='Digite um comentário' name='comments' onChange={HandleValue} value={newTextComment} required>
 
             </textarea>
             <footer>
-                <button type='submit'>Publicar</button>
+                <button type='submit' disabled = {newTextComment.length===0}>Publicar</button>
                 </footer>
            </form>
 
            <div>
                {comments.map(comment => {
-                return <Comment   content={comment}/>
+                return <Comment key = {comment} content={comment} ondeleteComment = {deleteComment}/>
                })}
             
 

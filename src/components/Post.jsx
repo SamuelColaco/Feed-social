@@ -20,17 +20,30 @@ export function Post(props){
         locale: ptBR,
         addSuffix: true,
     }) 
+
     const [comments, setComments] = useState([
-        1,
-        2
+        'Boa cara',
     ])
-    
+    const [newTextComment, setNewTextComment] = useState('')
+
     function addComments(){
     
         event.preventDefault()
-    
-        setComments([...comments, setComments.length +1])
+        
+        if(newTextComment === ""){
+            alert("Digite algo para mandar")
+        }
+        else{
+            setComments([...comments, newTextComment])
+            setNewTextComment('')
+        }
+      
     }
+
+    function HandleValue(){
+        setNewTextComment(event.target.value)
+    }
+
     return(
        <article className={style}>
            <header>
@@ -61,7 +74,7 @@ export function Post(props){
            </div>
            <form onSubmit={addComments}>
             <strong>Deixe seu feedback</strong>
-            <textarea placeholder='Digite um comentário'>
+            <textarea placeholder='Digite um comentário' name='comments' onChange={HandleValue} value={newTextComment}>
 
             </textarea>
             <footer>
@@ -71,7 +84,7 @@ export function Post(props){
 
            <div>
                {comments.map(comment => {
-                return <Comment />
+                return <Comment   content={comment}/>
                })}
             
 

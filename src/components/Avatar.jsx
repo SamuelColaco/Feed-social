@@ -1,6 +1,7 @@
 
 import profile from '../assets/profile.png'
+import style from './Avatar.module.css'
 
-export function Avatar(props){
-    return <img src = {props.src}/>
+export function Avatar({hasBorder = true, src}){
+    return <img  className= {hasBorder ? style.border : style.noBorder} src = {src}/>
 }

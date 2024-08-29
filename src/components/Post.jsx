@@ -13,7 +13,7 @@ export function Post(){
        <article className={style}>
            <header>
                 <div>
-                   <Avatar />
+                   <Avatar src={ profile }/>
                     <div>
                        <strong>Jane Cooper</strong>
                        <small>Dev Front-End</small>

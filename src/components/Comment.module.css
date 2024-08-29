@@ -1,0 +1,76 @@
+
+
+.commentDiv{
+    display: flex;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+.commentDiv > img{
+    object-fit: cover;
+    width: 3rem;
+    height: 3rem;
+}
+.commentBox{
+    flex: 1;
+ }
+.comment{
+    background-color: var(--gray-700);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+.comment header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.comment header > div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.comment strong{
+    display: block;
+    font-size: 0.875rem;
+    line-height: 0;
+}
+.comment small{
+    display: block;
+    line-height: 1;
+}
+.comment header button{
+    background-color: transparent;
+    border: 0;
+    color: var(--gray-400);
+    cursor: pointer;
+    font-size: 0;
+
+    border-radius: 0.25rem;
+    transition: 0.2s ease-in-out;
+}
+
+.comment header button:hover{
+    color: #F75A68;
+}
+
+footer button{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 1rem;
+
+    background-color: transparent;
+    color: var(--gray-400);
+    border: 0;
+    cursor: pointer;
+
+    transition: 0.2s ease-in-out;
+}
+footer button:hover{
+    color: var(--white);
+}
+footer button span::before{
+    content: "\2022";
+    padding: 0 0.25rem;
+
+}

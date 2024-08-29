@@ -1,14 +1,19 @@
 
-import style from './Post.module.css'
+import style from './Post.module.css' 
+
+
+import { Comment } from './Comment'
+
 
 import profile from '../assets/profile.png'
+import { Avatar } from './Avatar'
 
 export function Post(){
     return(
        <article className={style}>
            <header>
                 <div>
-                    <img src={profile}/>
+                   <Avatar />
                     <div>
                        <strong>Jane Cooper</strong>
                        <small>Dev Front-End</small>
@@ -35,6 +40,12 @@ export function Post(){
                 <button type='submit'>Publicar</button>
                 </footer>
            </form>
+
+           <div>
+                <Comment />
+                <Comment />
+                <Comment />
+           </div>
 
        </article>
     )

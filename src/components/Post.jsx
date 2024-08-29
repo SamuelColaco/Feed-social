@@ -1,37 +1,65 @@
 
 import style from './Post.module.css' 
 
-
+import { useState } from 'react'
+import { format, formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { Comment } from './Comment'
 
 
-import profile from '../assets/profile.png'
 import { Avatar } from './Avatar'
 
-export function Post(){
+
+
+
+export function Post(props){
+    const publishedDateFormat = format(props.publishedAt, "dd 'de' LLLL 'ás' MM:mm'h'", {
+        locale: ptBR,
+    })
+    const publishedDifference = formatDistanceToNow(props.publishedAt, {
+        locale: ptBR,
+        addSuffix: true,
+    }) 
+    const [comments, setComments] = useState([
+        1,
+        2
+    ])
+    
+    function addComments(){
+    
+        event.preventDefault()
+    
+        setComments([...comments, setComments.length +1])
+    }
     return(
        <article className={style}>
            <header>
                 <div>
-                   <Avatar src={ profile }/>
+                   <Avatar src={props.author.avatarUrl} />
                     <div>
-                       <strong>Jane Cooper</strong>
-                       <small>Dev Front-End</small>
+                       <strong>{props.author.name}</strong>
+                       <small>{props.author.role}</small>
                     </div>
                 </div>
-                <p>Públicado há 1h</p>
+                <p title={publishedDateFormat}>
+                    {publishedDifference}
+                </p>
            </header>
 
            <div className={style.div}>
-           <p>Fala galeraa 👋</p>
 
-            <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-
-            <a href="#"><p>👉 jane.design/doctorcare</p></a>
+            {props.content.map(line => {
+                if(line.type === "paragraph"){
+                    return <p>{line.content}</p>
+                }
+                else if(line.type === "link"){
+                    return <a href="#"> <p>{line.content}</p></a>
+                }
+            })}
 
             <p className= {style.lastP}>#novoprojeto #nlw #rocketseat</p>
            </div>
-           <form>
+           <form onSubmit={addComments}>
             <strong>Deixe seu feedback</strong>
             <textarea placeholder='Digite um comentário'>
 
@@ -42,9 +70,11 @@ export function Post(){
            </form>
 
            <div>
-                <Comment />
-                <Comment />
-                <Comment />
+               {comments.map(comment => {
+                return <Comment />
+               })}
+            
+
            </div>
 
        </article>

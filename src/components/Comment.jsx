@@ -5,7 +5,7 @@ import { Trash, ThumbsUp } from '@phosphor-icons/react'
 import profile from '../assets/profile.png'
 import { Avatar } from './Avatar'
 
-export function Comment(){
+export function Comment(props){
     return(
         <div className={style.commentDiv}>
             < Avatar hasBorder={false}  src={ profile }/>

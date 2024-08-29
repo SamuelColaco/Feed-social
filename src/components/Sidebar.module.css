@@ -39,7 +39,7 @@
     align-items: center;
     gap: 1rem;
 
-    padding: 0.8rem 1.5rem;
+    padding: 1rem;
     background-color: transparent;
     border: 2px solid var(--green-500);
     color: var(--green-500);

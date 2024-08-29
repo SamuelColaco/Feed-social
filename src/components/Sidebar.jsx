@@ -17,7 +17,7 @@ export function Sidebar(){
 
             <div>
                 <button>
-                    <PencilSimpleLine  size={24}/>
+                    <PencilSimpleLine  size={20}/>
                     Editar seu perfil
                     </button>
             </div>
